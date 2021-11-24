@@ -7,7 +7,7 @@ import jobReducer from '../reducers'
 
 export const initialState = {
   // I'm planning to store the application jobs
-  job: {
+  jobs: {
     listings: [],
   },
 }
