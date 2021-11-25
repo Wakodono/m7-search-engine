@@ -1,35 +1,37 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { FaTrash } from 'react-icons/fa'
-import { removeJobsAction } from '../actions'
+import React from "react";
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import ListGroup from "react-bootstrap/ListGroup"
+import ListGroupItem from "react-bootstrap/ListGroupItem"
+import { StarFill } from "react-bootstrap-icons";
+import { connect } from "react-redux";
+import { removeFromFav } from "../store/actions";
 
-export const Favourites = ({ jobs, removeListings }) => {
+const mapDispatchToProps = (dispatch) => ({
+  removeFromFav: (f) => {
+    dispatch(removeFromFav(f));
+  },
+});
+
+const Favourites = () => {
     return (
+      <Container>
         <Row>
-            <Col sm={12}>
-            <ul style={{ listStyle: "none" }}>
-        {cart.map((listing, i) => (
-          <li key={i} className="my-4">
-            <Button variant="danger" onClick={() => removeListings(i)}>
-              <FaTrash />
-            </Button>
-            {listing.title}
-          </li>
-        ))}
-      </ul>
-            </Col>
+          <Col xs={12}>
+            <ListGroup>
+              {props.favourites.map((f) => (
+                <ListGroupItem>
+                  <StarFill onClick={() => props.removeFromFav(f)} />
+                  <span>{f}</span>
+                </ListGroupItem>
+              ))}
+            </ListGroup>
+          </Col>
         </Row>
-    )
-}
+      </Container>
+    );
+  }
 
-const mapStateToProps = (state) => ({
-    jobs: state.jobs.listings
-})
 
-const mapDispatchToProps = dispatch => ({
-  removeListing: (indexToRemove) => {
-      dispatch(removeFromJobsAction(index.ToRemove))
-  }  
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Favourites)
+export default connect((s) => s, mapDispatchToProps)(Favourites);
