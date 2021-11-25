@@ -4,14 +4,31 @@ import { useState } from 'react';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import Alert from 'react-bootstrap/Alert'
+import Spinner from 'react-bootstrap/Spinner'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getJobsAction } from '../store/actions'
+import uniqid from 'uniqid' 
 import JobResult from './JobResult'
 
+
+ const mapStateToProps = s => s
+
+ const mapDispatchToProps = dispatch => ({
+     getJobs: () => {
+         dispatch(getJobsAction())
+     }
+ })
 
  const Home = () => {
     
   const [query, setQuery] = useState("")
   const [jobs, setJobs] = useState([])
+
+  useEffect(() => {
+      props.getJobs()
+  }, [])
 
   // https://strive-jobs-api.herokuapp.com/jobs?search=developer&limit=10 Perform a search using this example
 
@@ -56,7 +73,7 @@ import JobResult from './JobResult'
                 </Col>
                 <Col xs={10} className='mx-auto mb-5'>
                     {
-                        this.state.jobs.map(jobData => <JobResult key={uniqid()} data={jobData} />)
+                        state.jobs.map(jobData => <JobResult key={uniqid()} data={jobData} />)
                     }
                 </Col>
             </Row>
@@ -64,4 +81,4 @@ import JobResult from './JobResult'
     )
 }
 
-export default Home
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
