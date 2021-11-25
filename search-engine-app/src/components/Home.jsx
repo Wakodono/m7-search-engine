@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import { Link } from 'react-router-dom'
+import JobResult from './JobResult'
 
 
  const Home = () => {
@@ -44,9 +46,18 @@ import Container from 'react-bootstrap/Container'
         <Container>
             <Row>
                 <Col xs={10} className='mx-auto my-3'>
+                    <h1>Ninja WebDev Jobs Search</h1>
+                    <Link to="/favourites" className="btn btn-primary">Favourites</Link>
+                </Col>
+                <Col xs={10} className='mx-auto'>
                     <Form onSubmit={handleSubmit}>
-                        <Form.Control type="search" placeholder="Search" value={query} onChange={handleChange} />
+                        <Form.Control type="search" value={state.query} onChange={handleChange} placeholder="Attack your keys and press Enter..." />
                     </Form>
+                </Col>
+                <Col xs={10} className='mx-auto mb-5'>
+                    {
+                        this.state.jobs.map(jobData => <JobResult key={uniqid()} data={jobData} />)
+                    }
                 </Col>
             </Row>
         </Container>
