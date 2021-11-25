@@ -6,7 +6,7 @@ import { removeJobsAction } from '../actions'
 export const Favourites = ({ jobs, removeListings }) => {
     return (
         <Row>
-            <Col>
+            <Col sm={12}>
             <ul style={{ listStyle: "none" }}>
         {cart.map((listing, i) => (
           <li key={i} className="my-4">
