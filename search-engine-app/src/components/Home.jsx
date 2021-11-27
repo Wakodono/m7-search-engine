@@ -35,7 +35,7 @@ import JobResult from './JobResult'
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-       
+        props.getJobs(baseURL, query)
     
     }
 
@@ -52,12 +52,15 @@ import JobResult from './JobResult'
                 </Col>
                 <Col xs={10} className='mx-auto'>
                     <Form onSubmit={handleSubmit}>
-                        <Form.Control type="search" value={state.query} onChange={handleChange} placeholder="Attack your keys and press Enter..." />
+                        <Form.Control type="search" 
+                        value={query}
+                        onChange={handleChange} 
+                        placeholder="Attack your keys and press Enter..." />
                     </Form>
                 </Col>
                 <Col xs={10} className='mx-auto mb-5'>
                     {
-                        state.jobs.map(jobData => <JobResult key={uniqid()} data={jobData} />)
+                        jobs.elements.map(jobData => <JobResult key={uniqid()} data={jobData} />)
                     }
                 </Col>
             </Row>
