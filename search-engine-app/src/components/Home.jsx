@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
@@ -24,9 +24,6 @@ import JobResult from './JobResult'
   const [query, setQuery] = useState("")
   const [jobs, setJobs] = useState([])
 
-  useEffect(() => {
-      props.getJobs()
-  }, [])
 
   // https://strive-jobs-api.herokuapp.com/jobs?search=developer&limit=10 Perform a search using this example
 
@@ -35,7 +32,7 @@ import JobResult from './JobResult'
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        props.getJobs(baseURL, query)
+        getJobsAction(baseURL, query)
     
     }
 
@@ -52,7 +49,8 @@ import JobResult from './JobResult'
                 </Col>
                 <Col xs={10} className='mx-auto'>
                     <Form onSubmit={handleSubmit}>
-                        <Form.Control type="search" 
+                        <Form.Control 
+                        type="search" 
                         value={query}
                         onChange={handleChange} 
                         placeholder="Attack your keys and press Enter..." />
@@ -60,7 +58,7 @@ import JobResult from './JobResult'
                 </Col>
                 <Col xs={10} className='mx-auto mb-5'>
                     {
-                        jobs.elements.map(jobData => <JobResult key={uniqid()} data={jobData} />)
+                        jobs.elements && jobs.elements.map(jobData => <JobResult key={uniqid()} data={jobData} />)
                     }
                 </Col>
             </Row>

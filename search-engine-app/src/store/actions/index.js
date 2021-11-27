@@ -1,6 +1,7 @@
 // in this file we're going to export our actions
 export const ADD_TO_FAV = 'ADD_TO_FAV'
 export const REMOVE_FROM_FAV = 'REMOVE_FROM_FAV'
+export const GET_JOBS = 'GET_JOBS'
 export const TOGGLE_LOADER = 'TOGGLE_LOADER'
 export const GET_JOBS_ERROR = 'GET_JOBS_ERROR'
 
