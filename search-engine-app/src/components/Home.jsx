@@ -13,11 +13,9 @@ import uniqid from 'uniqid'
 import JobResult from './JobResult'
 
 
- const mapStateToProps = s => s
-
- const mapDispatchToProps = dispatch => ({
-     getJobs: () => {
-         dispatch(getJobsAction())
+ const mapDispatchToProps = (dispatch) => ({
+     getJobs: (baseURL, query) => {
+         dispatch(getJobsAction(baseURL, query))
      }
  })
 
@@ -32,26 +30,12 @@ import JobResult from './JobResult'
 
   // https://strive-jobs-api.herokuapp.com/jobs?search=developer&limit=10 Perform a search using this example
 
-    let baseURL = 'https://strive-jobs-api.herokuapp.com/jobs?search='
+    const baseURL = 'https://strive-jobs-api.herokuapp.com/jobs?search='
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        try {
-
-        const res = await fetch(baseURL + query + '&limit=10')
-
-        if (!res.ok) {
-            alert(`Uh oh we couldn't get the resutls!!`)
-            return
-        }
-
-        const { data } = await res.json()
-
-        setJobs({ jobs: data })
-        } catch (error) {
-            console.log(error)
-        }
+       
     
     }
 
@@ -81,4 +65,4 @@ import JobResult from './JobResult'
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect((s) => s, mapDispatchToProps)(Home);

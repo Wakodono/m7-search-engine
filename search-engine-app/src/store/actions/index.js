@@ -8,14 +8,14 @@ export const GET_JOBS_ERROR = 'GET_JOBS_ERROR'
 // a function that returns an action (a JS object)
 
 export const addToFav = (company) => ({
-  type: 'ADD_TO_FAV',
+  type: ADD_TO_FAV,
   payload: company, // this is going to be the company we intend to add to the favourites list
   // the payload is any other piece of info required by the reducer to understand
   // what we want to do with this action
 })
 
 export const removeFromFav = (company) => ({
-  type: 'REMOVE_FROM_FAV',
+  type: REMOVE_FROM_FAV,
   payload: company,
 })
 // the function returns an object, so you can dispatch it INSTEAD of dispatching the object
@@ -25,12 +25,12 @@ export const removeFromFav = (company) => ({
 // with redux thunk you can return out of them not just simple actions, but FUNCTIONS.
 // and these functions can be even ASYNC, so you can do even FETCHES inside of them!
 
-export const getJobsAction = () => {
-  return async (dispatch) => {
+export const getJobsAction = (baseURL, query) => {
+  return async (dispatch, getState) => {
     try {
-      const response = await fetch('https://strive-jobs-api.herokuapp.com/jobs?search=')
+      const response = await fetch(baseURL + query + '&limit=20')
       if (response.ok) {
-        const data = await response.json()
+        const { data } = await response.json()
 
         dispatch({
           type: GET_JOBS,
