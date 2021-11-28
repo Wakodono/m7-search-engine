@@ -37,7 +37,7 @@ import JobResult from './JobResult'
     }
 
     const handleChange = (e) => {
-        setQuery({ query: e.target.value })
+        setQuery(e.target.value)
     }
     
     return (

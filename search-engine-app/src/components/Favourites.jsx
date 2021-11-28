@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const Favourites = ({ props }) => {
+const Favourites = (props) => {
     return (
       <Container>
         <Row>
@@ -22,7 +22,7 @@ const Favourites = ({ props }) => {
             <ListGroup>
               {
               
-                props.favourites.map((f) => (
+                props.favourites.elements.map((f) => (
                 <ListGroupItem>
                   <StarFill onClick={() => props.removeFromFav(f)} />
                   <span>{f}</span>
