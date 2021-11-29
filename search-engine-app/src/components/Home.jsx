@@ -67,7 +67,8 @@ import JobResult from './JobResult'
                     {
                         jobs && jobs.map((jobData) => <JobResult key={uniqid()} data={jobData} />)
                     
-                 }                </Col>
+                    }                
+                </Col>
             </Row>
         </Container>
     )

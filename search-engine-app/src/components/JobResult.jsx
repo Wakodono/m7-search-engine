@@ -19,6 +19,7 @@ function JobResult({
   addToFavourites,
   removeFromFavourites,
 }) {
+
   const isFav = favourites.elements.includes(data.company_name);
   const toggleFavourite = () => {
     isFav

@@ -5,16 +5,20 @@ import Col from "react-bootstrap/Col"
 import ListGroup from "react-bootstrap/ListGroup"
 import ListGroupItem from "react-bootstrap/ListGroupItem"
 import { StarFill } from "react-bootstrap-icons";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { removeFromFav } from "../store/actions";
 
-const mapDispatchToProps = (dispatch) => ({
-  removeFromFav: (f) => {
-    dispatch(removeFromFav(f));
-  },
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   removeFromFav: (f) => {
+//     dispatch(removeFromFav(f));
+//   },
+// });
 
-const Favourites = (props) => {
+const Favourites = () => {
+
+  const state = useSelector(s => s)
+  const dispatch = useDispatch()
+
     return (
       <Container>
         <Row>
@@ -22,9 +26,9 @@ const Favourites = (props) => {
             <ListGroup>
               {
               
-                props.favourites.elements.map((f) => (
+                state.favourites.elements.map((f) => (
                 <ListGroupItem>
-                  <StarFill onClick={() => props.removeFromFav(f)} />
+                  <StarFill onClick={() => dispatch(removeFromFav(f))} />
                   <span>{f}</span>
                 </ListGroupItem>
                 ))
@@ -38,4 +42,4 @@ const Favourites = (props) => {
   }
 
 
-export default connect((s) => s, mapDispatchToProps)(Favourites);
+export default Favourites;
