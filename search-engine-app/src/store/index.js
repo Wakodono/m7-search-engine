@@ -9,6 +9,8 @@ export const initialState = {
     },
     jobs: {
         elements: [],
+        isLoading: false,
+        isError: false,
     },
 }
 

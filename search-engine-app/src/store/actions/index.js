@@ -30,6 +30,7 @@ export const getJobsAction = (baseURL, query) => {
   return async (dispatch, getState) => {
     try {
       const response = await fetch(baseURL + query + '&limit=20')
+      console.log(baseURL + query + '&limit=20')
       if (response.ok) {
         const { data } = await response.json()
 
