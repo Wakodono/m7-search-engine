@@ -43,3 +43,8 @@ const Favourites = () => {
 
 
 export default Favourites;
+
+// redux hooks allow you to skip:
+// the connect function,
+// the mapStateToProps function
+// the mapDispatchToProps function

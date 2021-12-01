@@ -27,6 +27,11 @@ const persistConfig = {
     key: 'root',
     storage,
     //transforms will go here when we want to encrypt our persisted storage
+    transforms: [
+        encryptTransform({
+            secretKey: process.env.REACT_APP_ENCRYPT_KEY,
+        }),
+    ],
 }
 
 const mainReducer = combineReducers({
